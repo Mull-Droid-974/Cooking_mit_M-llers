@@ -4,10 +4,12 @@ import { useMemo } from "react";
 import { getDailyRecipes, getTodayString } from "@/lib/dailyMenu";
 import { useAppState } from "@/hooks/useAppState";
 import DailyMenuSection from "@/components/DailyMenuSection";
+import { Loader2 } from "lucide-react";
 
 export default function HomePage() {
   const {
     state,
+    syncing,
     toggleBookmark,
     cookRecipe,
     rateRecipe,
@@ -50,7 +52,10 @@ export default function HomePage() {
         <h1 className="text-2xl font-bold text-gray-900">
           Hallo, Familie Müller! 👨‍👩‍👧‍👦
         </h1>
-        <p className="text-gray-500 text-sm mt-1 capitalize">{today}</p>
+        <p className="text-gray-500 text-sm mt-1 capitalize flex items-center gap-2">
+          {today}
+          {syncing && <Loader2 size={12} className="animate-spin text-gray-400" />}
+        </p>
       </div>
 
       {/* Daily Badge */}
